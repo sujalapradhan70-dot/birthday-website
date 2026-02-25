@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Magical Birthday for Surabhee!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+        :root {
+            --background-color: #1a1125; /* Deep magical purple */
+            --text-color: #f0e8ff; /* Soft lavender white */
+            --accent-color-1: #ff69b4; /* Hot Pink */
+            --accent-color-2: #00ffff; /* Cyan */
+            --accent-color-3: #f9d71c; /* Bright Gold */
+            --card-bg-color: rgba(255, 255, 255, 0.05);
+            --font-family-main: 'Poppins', sans-serif;
+            --font-family-script: 'Dancing Script', cursive;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family-main);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            overflow: hidden;
+            position: relative; /* For background decorations */
+        }
+
+        /* Animated Background Decorations */
+        .decoration-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .deco-shape {
+            position: absolute;
+            list-style: none;
+            display: block;
+            background: rgba(255, 255, 255, 0.1);
+            animation: rise 25s infinite linear;
+            bottom: -150px;
+        }
+
+        .deco-shape:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
+        .deco-shape:nth-child(2) { left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
+        .deco-shape:nth-child(3) { left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
+        .deco-shape:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s; }
+        .deco-shape:nth-child(5) { left: 65%; width: 20px; height: 20px; animation-delay: 0s; }
+        .deco-shape:nth-child(6) { left: 75%; width: 110px; height: 110px; animation-delay: 3s; }
+        .deco-shape:nth-child(7) { left: 35%; width: 150px; height: 150px; animation-delay: 7s; }
+        .deco-shape:nth-child(8) { left: 50%; width: 25px; height: 25px; animation-delay: 15s; animation-duration: 45s; }
+        .deco-shape:nth-child(9) { left: 20%; width: 15px; height: 15px; animation-delay: 2s; animation-duration: 35s; }
+        .deco-shape:nth-child(10) { left: 85%; width: 150px; height: 150px; animation-delay: 0s; animation-duration: 11s; }
+
+        @keyframes rise {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 0; }
+            100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 50%; }
+        }
+
+
+        .scroll-container {
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+            position: relative;
+            z-index: 1;
+        }
+
+        section {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            scroll-snap-align: start;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+            padding: 0 2rem;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Section */
+        .hero h1 {
+            font-family: var(--font-family-script);
+            font-size: 6rem;
+            font-weight: 700;
+            color: #fff;
+            animation: neon-glow 2s ease-in-out forwards;
+            text-shadow:
+                0 0 5px #fff,
+                0 0 10px #fff,
+                0 0 20px var(--accent-color-1),
+                0 0 30px var(--accent-color-1),
+                0 0 40px var(--accent-color-1);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--text-color);
+            margin-top: 1rem;
+            animation: fadeIn 3s ease-in-out forwards;
+        }
+
+        @keyframes neon-glow {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Wishes Section */
+        .wishes-section h2 {
+            font-size: 3.5rem;
+            color: #fff;
+            margin-bottom: 3rem;
+            text-shadow: 0 0 10px var(--accent-color-2);
+            animation: fadeIn-up 1s 0.5s forwards;
+            opacity: 0;
+        }
+
+        .wish-card {
+            font-size: 1.3rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            background: var(--card-bg-color);
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 105, 180, 0.5);
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.2);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn-up 1s forwards;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .wish-icon {
+            font-size: 2.5rem;
+        }
+
+        .wishes-container { max-width: 800px; }
+        .wishes-container .wish-card:nth-of-type(1) { animation-delay: 1s; }
+        .wishes-container .wish-card:nth-of-type(2) { animation-delay: 1.5s; border-color: rgba(0, 255, 255, 0.5); box-shadow: 0 0 20px rgba(0, 255, 255, 0.2); }
+        .wishes-container .wish-card:nth-of-type(3) { animation-delay: 2s; border-color: rgba(249, 215, 28, 0.5); box-shadow: 0 0 20px rgba(249, 215, 28, 0.2); }
+
+        @keyframes fadeIn-up {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Final Wish & Canvas Section */
+        #interactive-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .final-wish h2 {
+            font-size: 4.5rem;
+            font-family: var(--font-family-script);
+            color: #fff;
+            text-shadow: 0 0 15px var(--accent-color-3);
+        }
+
+        /* Scroll Down Indicator */
+        .scroll-down-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-down-indicator span {
+            display: block;
+            width: 20px;
+            height: 20px;
+            border-bottom: 2px solid var(--text-color);
+            border-right: 2px solid var(--text-color);
+            transform: rotate(45deg);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-20px); }
+            60% { transform: translateX(-50%) translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+
+    <ul class="decoration-container">
+        <li class="deco-shape"></li>
+        <li class="deco-shape"></li>
+        <li class="deco-shape"></li>
+        <li class="deco-shape"></li>
+        <li class="deco-shape"></li>
+        <li class="deco-shape"></li>
+        <li class="deco-shape"></li>
+        <li class="deco-shape"></li>
+        <li class="deco-shape"></li>
+        <li class="deco-shape"></li>
+    </ul>
+
+    <div class="scroll-container">
+        <section id="hero" class="hero visible">
+            <div class="container">
+                <h1>Happy Birthday, Surabhee!</h1>
+                <p>Sending you a universe of love and magic.</p>
+            </div>
+            <div class="scroll-down-indicator">
+                <span></span>
+            </div>
+        </section>
+
+        <section id="wishes" class="wishes-section">
+            <div class="wishes-container">
+                <h2>My Wishes For You</h2>
+                <div class="wish-card">
+                    <span class="wish-icon">💖</span>
+                    <p>May your day be filled with the kind of pure joy that makes you smile for no reason.</p>
+                </div>
+                <div class="wish-card">
+                    <span class="wish-icon">✨</span>
+                    <p>Wishing you a year ahead that sparkles with new adventures and beautiful moments.</p>
+                </div>
+                <div class="wish-card">
+                    <span class="wish-icon">🎂</span>
+                    <p>Cheers to my amazing best friend! May life always be as sweet and wonderful as you are.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="ai-design" class="ai-design-section">
+            <canvas id="interactive-canvas"></canvas>
+            <div class="container final-wish">
+                <h2>Make a Wish!</h2>
+                <p>The universe is listening.</p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Section Visibility on Scroll ---
+            const sections = document.querySelectorAll('section');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.4 });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // --- Interactive Canvas with Cute Shapes ---
+            const canvas = document.getElementById('interactive-canvas');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+
+                const colors = ['#ff69b4', '#00ffff', '#f9d71c'];
+                const shapes = ['star', 'heart', 'circle'];
+                let particlesArray = [];
+
+                class Particle {
+                    constructor(x, y) {
+                        this.x = x;
+                        this.y = y;
+                        this.size = Math.random() * 8 + 4;
+                        this.speedX = Math.random() * 2 - 1;
+                        this.speedY = Math.random() * 2 - 1;
+                        this.color = colors[Math.floor(Math.random() * colors.length)];
+                        this.shape = shapes[Math.floor(Math.random() * shapes.length)];
+                        this.angle = 0;
+                        this.spin = Math.random() < 0.5 ? -0.01 : 0.01;
+                    }
+
+                    drawStar(centerX, centerY, points, outerR, innerR) {
+                        ctx.beginPath();
+                        ctx.moveTo(centerX, centerY + outerR);
+                        for (let i = 0; i < 2 * points + 1; i++) {
+                            const r = (i % 2 == 0) ? outerR : innerR;
+                            const a = Math.PI * i / points;
+                            ctx.lineTo(centerX + r * Math.sin(a), centerY + r * Math.cos(a));
+                        }
+                        ctx.closePath();
+                        ctx.fill();
+                    }
+                    
+                    drawHeart(x, y, width, height) {
+                        ctx.beginPath();
+                        var topCurveHeight = height * 0.3;
+                        ctx.moveTo(x, y + topCurveHeight);
+                        ctx.bezierCurveTo(x, y, x - width / 2, y, x - width / 2, y + topCurveHeight);
+                        ctx.bezierCurveTo(x - width / 2, y + (height + topCurveHeight) / 2, x, y + (height + topCurveHeight) / 2, x, y + height);
+                        ctx.bezierCurveTo(x, y + (height + topCurveHeight) / 2, x + width / 2, y + (height + topCurveHeight) / 2, x + width / 2, y + topCurveHeight);
+                        ctx.bezierCurveTo(x + width / 2, y, x, y, x, y + topCurveHeight);
+                        ctx.closePath();
+                        ctx.fill();
+                    }
+
+                    draw() {
+                        ctx.fillStyle = this.color;
+                        ctx.save();
+                        ctx.translate(this.x, this.y);
+                        ctx.rotate(this.angle);
+
+                        switch(this.shape) {
+                            case 'star':
+                                this.drawStar(0, 0, 5, this.size, this.size / 2);
+                                break;
+                            case 'heart':
+                                this.drawHeart(0, 0, this.size, this.size);
+                                break;
+                            default: // circle
+                                ctx.beginPath();
+                                ctx.arc(0, 0, this.size, 0, Math.PI * 2);
+                                ctx.fill();
+                        }
+                        ctx.restore();
+                    }
+
+                    update() {
+                        this.x += this.speedX;
+                        this.y += this.speedY;
+                        this.angle += this.spin;
+                        if (this.size > 0.2) this.size -= 0.05;
+                    }
+                }
+                
+                let isMouseDown = false;
+                canvas.addEventListener('mousedown', () => isMouseDown = true);
+                canvas.addEventListener('mouseup', () => isMouseDown = false);
+                canvas.addEventListener('mousemove', (e) => {
+                    if (isMouseDown) {
+                        for (let i = 0; i < 3; i++) {
+                            particlesArray.push(new Particle(e.clientX, e.clientY));
+                        }
+                    }
+                });
+                
+                function handleParticles() {
+                    for (let i = 0; i < particlesArray.length; i++) {
+                        particlesArray[i].update();
+                        particlesArray[i].draw();
+                        if (particlesArray[i].size <= 0.3) {
+                            particlesArray.splice(i, 1);
+                            i--;
+                        }
+                    }
+                }
+
+                function animate() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    handleParticles();
+                    requestAnimationFrame(animate);
+                }
+                animate();
+
+                window.addEventListener('resize', function(){
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
